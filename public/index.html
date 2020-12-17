@@ -5,14 +5,10 @@
     </body>
     <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
     <script>
-      window.onload() = () => {
-        liff.init({
-          liffId: "1655381466-modX62Ob"
-        }) .then((data) =>{
-             console.log(data)
-        }) .catch((err) => {
-          console.log(err.code, err.message);
-        });
+      window.onload = () => {
+        liff.init(function(data){
+          console.log(data)
+        })
       }
     </script>
 </html>

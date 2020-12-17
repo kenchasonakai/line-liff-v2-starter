@@ -5,8 +5,6 @@
       <input type="text" name="address" id="address"></br>
       <label for="name">名前：</label>
       <input type="text" name="name" id="name"></br>
-      <label for="key">apikey：</label>
-      <input type="text" name="key" id="key"></br>
       <button id="submit">送信</button>
       <div id="result">結果表示欄</div>
     </body>
@@ -61,7 +59,6 @@ const set_query = () => {
   return array.join("")
 }
 const grnv = () => {
-  var key = document.getElementById("key").value;
   var result = document.getElementById("result");
   result.innerHTML = ""
   let query = set_query();

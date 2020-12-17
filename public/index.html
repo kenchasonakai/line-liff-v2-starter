@@ -50,9 +50,7 @@ const keyid = "keyid=cef47ca1112a065456f7be4443382b59";
 const submit_button = document.getElementById("submit");
 const set_query = () => {
   let address = document.getElementById("address").value;
-  address = "埼玉県新座市"
   let name = document.getElementById("name").value;
-  name = "モスバーガー"
   let array = new Array();
   if(address){
     array.push(`&address=${encodeURI(address)}`)
@@ -77,7 +75,6 @@ const grnv = () => {
       console.log(p)
       result.appendChild(p)
     }
-    result.innerHTML = JSON.stringify(data.rest)
   })
 }
 submit_button.addEventListener('click', () => { grnv(); }, false);

@@ -7,8 +7,7 @@
     <script>
   liff.init({
     liffId: "1655381466-modX62Ob"
-    const idToken = liff.getIDToken();
-    console.log(idToken)
+    console.log(liff.getIDToken())
     liff.getProfile()
     .then(profile => {
       const name = profile.displayName

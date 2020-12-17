@@ -71,6 +71,11 @@ const grnv = () => {
   .then(data => {
     for(element of data.rest){
       console.log(element.name)
+      var p = document.createElement("p")
+      var newContent = document.createTextNode(element.name);
+      p.appendChild(newContent)
+      console.log(p)
+      result.appendChild(p)
     }
     result.innerHTML = JSON.stringify(data.rest)
   })

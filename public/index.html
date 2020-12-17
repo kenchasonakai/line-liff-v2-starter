@@ -7,15 +7,6 @@
     <script>
   liff.init({
     liffId: "1655381466-modX62Ob"
-    console.log(liff.getIDToken())
-    liff.getProfile()
-    .then(profile => {
-      const name = profile.displayName
-      console.log(name)
-    })
-.catch((err) => {
-  console.log('error', err);
-});
   })
   .then(() => {
     if (!liff.isLoggedIn()) {

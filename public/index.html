@@ -10,7 +10,7 @@
   })
   .then(() => {
     if (!liff.isLoggedIn()) {
-      liff.login();
+      liff.login({ redirectUri: "http://localhost:5000/" });
     }
     // Start to use liff's api
     console.log(liff.getOS())
@@ -21,6 +21,14 @@
     console.log(liff.isLoggedIn())
     const idToken = liff.getIDToken();
     console.log(idToken)
+    liff.getProfile()
+    .then(profile => {
+     const name = profile.displayName
+      console.log(name)
+    })
+    .catch((err) => {
+     console.log('error', err);
+    });
   })
   .catch((err) => {
     // Error happens during initialization

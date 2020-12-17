@@ -2,6 +2,14 @@
 <html lang="en">
     <body>
       <h1> <span id="name"></span> </h1>
+      <label for="address">住所：</label>
+      <input type="text" name="address" id="address"></br>
+      <label for="name">名前：</label>
+      <input type="text" name="name" id="name"></br>
+      <label for="key">apikey：</label>
+      <input type="text" name="key" id="key"></br>
+      <button id="submit">送信</button>
+      <div id="result">結果表示欄</div>
     </body>
     <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
     <script>
@@ -35,5 +43,38 @@
     console.log(err.code, err.message);
   });
 
+    </script>
+    <script>
+      const default_apikey = 'https://api.gnavi.co.jp/RestSearchAPI/v3/?';
+const keyid = "keyid=cef47ca1112a065456f7be4443382b59";
+const submit_button = document.getElementById("submit");
+const set_query = () => {
+  let address = document.getElementById("address").value;
+  address = "埼玉県新座市"
+  let name = document.getElementById("name").value;
+  name = "モスバーガー"
+  let array = new Array();
+  if(address){
+    array.push(`&address=${encodeURI(address)}`)
+  }
+  if(name){
+    array.push(`&name=${encodeURI(name)}`)
+  }
+  return array.join("")
+}
+const grnv = () => {
+  var key = document.getElementById("key").value;
+  var result = document.getElementById("result");
+  let query = set_query();
+  fetch(default_apikey + keyid + query)
+  .then(response => response.json())
+  .then(data => {
+    for(element of data.rest){
+      console.log(element.name)
+    }
+    result.innerHTML = JSON.stringify(data.rest)
+  })
+}
+submit_button.addEventListener('click', () => { grnv(); }, false);
     </script>
 </html>

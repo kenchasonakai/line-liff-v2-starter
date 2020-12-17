@@ -51,6 +51,7 @@ const submit_button = document.getElementById("submit");
 const set_query = () => {
   let address = document.getElementById("address").value;
   let name = document.getElementById("name").value;
+        console.log(name)
   let array = new Array();
   if(address){
     array.push(`&address=${encodeURI(address)}`)

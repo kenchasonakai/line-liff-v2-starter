@@ -5,13 +5,14 @@
     </body>
     <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
     <script>
-      liff.init({
-        liffId: "1655381466-modX62Ob"
-      }).then(() => {
-        liff.getProfile().then(profile => {
-          const name = profile.displayName
-          document.querySelector("#name").innerText = name
-        })
-      })
+      window.onload() = () => {
+        liff.init({
+          liffId: "1655381466-modX62Ob"
+        }) .then((data) =>{
+             console.log(data
+        }) .catch((err) => {
+          console.log(err.code, err.message);
+        });
+      }
     </script>
 </html>

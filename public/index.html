@@ -19,6 +19,8 @@
     console.log(liff.getLineVersion())
     console.log(liff.isInClient())
     console.log(liff.isLoggedIn())
+    const idToken = liff.getIDToken();
+    console.log(idToken)
   })
   .catch((err) => {
     // Error happens during initialization

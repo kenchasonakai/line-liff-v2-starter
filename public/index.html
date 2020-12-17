@@ -64,7 +64,7 @@ const set_query = () => {
 const grnv = () => {
   var key = document.getElementById("key").value;
   var result = document.getElementById("result");
-  result.innerHTML - ""
+  result.innerHTML = ""
   let query = set_query();
   fetch(default_apikey + keyid + query)
   .then(response => response.json())

@@ -27,12 +27,16 @@ window.onload = () => {
     let latitude_query = latitude.textContent.replace('緯度', '')
     let longitude_query = longitude.textContent.replace('経度', '')
     let latitude_and_longitude_query = `&latitude=${latitude_query}&longitude=${longitude_query}&range=1&coordinates_mode=2`
+    let hit_per_page = '&hit_per_page=20'
     let array = new Array();
     if(latitude_and_longitude_query){
       array.push(latitude_and_longitude_query)
     }
     if(name){
       array.push(`&name=${name}`)
+    }
+    if(hit_per_page){
+      array.push(hit_per_page)
     }
     return array.join("")
   }

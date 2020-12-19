@@ -1,80 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
     <body>
-      <label for="address">住所：</label>
-      <input type="text" name="address" id="address"></br>
+      <!-- コメント
+      <button id="institude_and_longitude">現在地を取得</button></br>
+      <div id="address">住所表示</div>
+      -->
       <label for="name">名前：</label>
       <input type="text" name="name" id="name"></br>
       <button id="submit">送信</button>
-      <div id="result">結果表示欄</div>
+      <div id="result">結果表示欄だよ〜</div>
+      <footer>
+        <button id="logout_button">ログアウト</button>
+      </footer>
     </body>
     <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
-    <script>
-  liff.init({
-    liffId: "1655381466-modX62Ob"
-  })
-  .then(() => {
-    if (!liff.isLoggedIn()) {
-      liff.login({ redirectUri: "http://localhost:5000/" });
-    }
-    // Start to use liff's api
-    console.log(liff.getOS())
-    console.log(liff.getLanguage())
-    console.log(liff.getVersion())
-    console.log(liff.getLineVersion())
-    console.log(liff.isInClient())
-    console.log(liff.isLoggedIn())
-    const idToken = liff.getIDToken();
-    console.log(idToken)
-    liff.getProfile()
-    .then(profile => {
-     const name = profile.displayName
-      console.log(name)
-    })
-    .catch((err) => {
-     console.log('error', err);
-    });
-  })
-  .catch((err) => {
-    // Error happens during initialization
-    console.log(err.code, err.message);
-  });
-
-    </script>
-    <script>
-      const default_apikey = 'https://api.gnavi.co.jp/RestSearchAPI/v3/?';
-const keyid = "keyid=cef47ca1112a065456f7be4443382b59";
-const submit_button = document.getElementById("submit");
-const set_query = () => {
-  let address = document.getElementById("address").value;
-  let name = document.getElementById("name").value;
-        console.log(name)
-  let array = new Array();
-  if(address){
-    array.push(`&address=${encodeURI(address)}`)
-  }
-  if(name){
-    array.push(`&name=${encodeURI(name)}`)
-  }
-  return array.join("")
-}
-const grnv = () => {
-  var result = document.getElementById("result");
-  result.innerHTML = ""
-  let query = set_query();
-  fetch(default_apikey + keyid + query)
-  .then(response => response.json())
-  .then(data => {
-    for(element of data.rest){
-      console.log(element.name)
-      var p = document.createElement("p")
-      var newContent = document.createTextNode(element.name);
-      p.appendChild(newContent)
-      console.log(p)
-      result.appendChild(p)
-    }
-  })
-}
-submit_button.addEventListener('click', () => { grnv(); }, false);
-    </script>
+    <script type="text/javascript" src="liff-starter.js"></script>
+    <script type="text/javascript" src="grnv.js"></script>
 </html>

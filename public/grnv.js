@@ -2,26 +2,34 @@ window.onload = () => {
   const default_apikey = 'https://api.gnavi.co.jp/RestSearchAPI/v3/?';
   const keyid = "keyid=cef47ca1112a065456f7be4443382b59";
   const submit_button = document.getElementById("submit");
-  var latitude = 'aaa';
-  var longitude = 'aaa';
+  const get_location_button = document.getElementById("get_location_button")
+  const latitude = document.getElementById("latitude")
+  const longitude = document.getElementById("longitude")
 
-  const get_current_location = (data) => {
-    var crd = data.coords
-    latitude = crd.latitude;
-    longitude = crd.longitude;
-    console.log(latitude)
-    console.log(longitude)
-    return `&latitude=${latitude}&longitude=${longitude}&range=1`
+  const get_current_location_success = (data) => {
+    let crd = data.coords
+    let get_latitude = crd.latitude;
+    let get_longitude = crd.longitude;
+    latitude.innerHTML = `緯度${get_latitude}`
+    longitude.innerHTML = `経度${get_longitude}`
   }
 
+  const error = () => {
+    console.log("位置情報の取得に失敗しました")
+  }
+
+  get_location_button.addEventListener('click', () => {
+    navigator.geolocation.getCurrentPosition(get_current_location_success, error)
+  }, false)
+
   const set_query = () => {
-    navigator.geolocation.getCurrentPosition(get_current_location)
     let name = document.getElementById("name").value;
-    console.log(name)
+    let latitude_query = latitude.textContent.replace('緯度', '')
+    let longitude_query = longitude.textContent.replace('経度', '')
+    let latitude_and_longitude_query = `&latitude=${latitude_query}&longitude=${longitude_query}&range=1&coordinates_mode=2`
     let array = new Array();
-    var address = false
-    if(address){
-      array.push(address)
+    if(latitude_and_longitude_query){
+      array.push(latitude_and_longitude_query)
     }
     if(name){
       array.push(`&name=${name}`)
@@ -33,8 +41,6 @@ window.onload = () => {
     var result = document.getElementById("result");
     result.innerHTML = ""
     let query = set_query();
-    console.log(query)
-    console.log(query)
     let fetch_query = encodeURI(default_apikey + keyid + query)
     fetch(fetch_query)
     .then(response => response.json())
@@ -47,9 +53,8 @@ window.onload = () => {
       }
     })
   }
+  navigator.geolocation.getCurrentPosition(get_current_location_success, error)
   submit_button.addEventListener('click', () => {
     grnv()
-    console.log(latitude)
-    console.log(longitude)
   }, false);
 }
